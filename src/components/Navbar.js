@@ -4,10 +4,10 @@ const Navbar = () => {
   return (
     <div className="navbar bg-purple-700">
       <div className="flex-1">
-        <a className="text-White ml-5 font-bold text-xl">DENNIME</a>
+        <a className="md:ml-20  text-White font-bold text-xl">DENNIME</a>
       </div>
 
-      <div className="dropdown dropdown-end mr-5">
+      <div className="dropdown dropdown-end md:mr-20">
         <div
           tabIndex={0}
           role="button"

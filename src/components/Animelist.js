@@ -5,7 +5,7 @@ import Link from "next/link";
 const Animelist = ({ title, images, rate, id }) => {
   return (
     <Link href={`/${id}`} className="cursor-pointer">
-      <div className="relative md:h-64 lg:h-64 sm:h-64">
+      <div className="relative md:h-64 lg:h-64 sm:h-64 overflow-hidden  hover:scale-110 transition-transform duration-300 ">
         {/* Gambar */}
         <Image
           src={images}
@@ -17,7 +17,7 @@ const Animelist = ({ title, images, rate, id }) => {
 
         {/* Gradient Overlay */}
         <div className="absolute flex items-center justify-center w-full h-full inset-0 bg-gradient-to-b from-transparent to-black rounded-md">
-          <h3 className="absolute bottom-2 text-center text-white">{title}</h3>
+          <h3 className="absolute bottom-2 text-center text-white line-clamp-1 hover:line-clamp-none transition-all duration-300 ease-in-out">{title}</h3>
         </div>
 
         {/* Rating */}
