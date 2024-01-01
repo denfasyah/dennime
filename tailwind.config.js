@@ -8,13 +8,14 @@ module.exports = {
   theme: {
     container: {
       center: true,
-      padding: "16px",
+      padding: "100px",
     },
     extend: {
       colors: {
         Grey: "#222430",
         Purple: "#bf8cfa",
         White: "#fefffd",
+        Background: "#1a1d26",
       },
     },
   },
