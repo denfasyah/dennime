@@ -5,7 +5,7 @@ import Genre from "./components/Genre";
 const Home = async () => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/top/anime`
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/top/anime?limit=10`
     );
     const anime = await response.json();
 
