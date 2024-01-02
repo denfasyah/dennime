@@ -6,11 +6,13 @@ const Search = () => {
   const searchRef = useRef();
   const router = useRouter();
   const handleSearch = (e) => {
-    e.preventDefault();
-    // alert(searchRef.current.value)
+    if (e.key === "Enter" || e.type === "click") {
+      e.preventDefault();
+      // alert(searchRef.current.value)
 
-    const keyword = searchRef.current.value;
-    router.push(`/search/${keyword}`);
+      const keyword = searchRef.current.value;
+      router.push(`/search/${keyword}`);
+    }
   };
   return (
     <div className="relative mt-10 flex justify-center ">
@@ -19,6 +21,7 @@ const Search = () => {
         placeholder="Search Anime"
         className=" rounded-r-lg  rounded-tl-lg p-4 px-10 md:w-auto text-White text-md bg-Grey"
         ref={searchRef}
+        onKeyDown={handleSearch}
       />
       <button className="absolute top-4 ml-60" onClick={handleSearch}>
         <IoSearchSharp className="fill-Purple" size={20} />
