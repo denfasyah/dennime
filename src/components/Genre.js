@@ -10,7 +10,7 @@ const Genre = async () => {
       <div className="lg:container mx-9">
         <div className="container carousel carousel-s rounded-box gap-4">
           {genres.data.map(({ mal_id, name }) => (
-            <Link href={``} 
+            <Link href={`genres/${name}`} 
               key={mal_id}
               className="carousel-item rounded-r-lg rounded-tl-lg bg-Grey p-2"
             >

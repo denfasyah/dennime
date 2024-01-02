@@ -1,40 +1,49 @@
-import Animelist from "./components/Animelist";
-import Search from "./components/Search";
-import Genre from "./components/Genre";
-import Link from "next/link";
-
+import Animelist from "../components/Animelist";
+import Search from "../components/Search";
+import HeaderSection from "../components/HeaderSection";
+import Genre from "../components/Genre";
+import RecentEps from "../components/RecentEps";
+import SeasonNow from "../components/SeasonNow";
 const Home = async () => {
   try {
-    const response = await fetch(
+    const resTopAnime = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/top/anime?limit=10`
     );
-    const anime = await response.json();
+    const topAnime = await resTopAnime.json();
+
+    // const resGenres = await fetch(
+    //   `${process.env.NEXT_PUBLIC_API_BASE_URL}/genres/anime`
+    // );
+    // const Genres = await resGenres.json();
 
     return (
       <>
         <Search />
-        <h1 className="lg:container text-2xl ml-10 my-8 text-White font-medium">
-          Genre
-        </h1>
-        <Genre />
-        <div className="flex items-center">
-          <h1 className="lg:container text-2xl ml-10 my-8 text-White font-medium">
-            Popular
-          </h1>
-          <Link href={`/popular`} className="mr-40 underline">More </Link>
-        </div>
-        <div className="lg:container grid md:grid-cols-5 sm:grid-cols-3 grid-cols-2 gap-5 mx-8">
-          {anime.data.map(({ mal_id, title, images, score }) => (
-            <div key={mal_id} className="shadow-xl">
-              <Animelist
-                id={mal_id}
-                title={title}
-                images={images.webp.large_image_url}
-                rate={score}
-              />
-            </div>
-          ))}
-        </div>
+       
+        {/* <section>
+          <HeaderSection title="Genre" />
+          <Animelist api={Genres} />
+        </section> */}
+
+        <section>
+          <HeaderSection title="Genre" linkTitle="" linkHref="" />
+          <Genre/>
+        </section>
+
+        <section>
+          <HeaderSection title="Season Now" linkTitle="" linkHref="" />
+          <SeasonNow/>
+        </section>
+
+        <section>
+          <HeaderSection title="Episode Terbaru" linkTitle="" linkHref="" />
+          <RecentEps/>
+        </section>
+
+        <section>
+          <HeaderSection title="Populer" linkTitle="more" linkHref="/popular" />
+          <Animelist api={topAnime} />
+        </section>
       </>
     );
   } catch (error) {

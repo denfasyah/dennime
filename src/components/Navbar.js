@@ -1,10 +1,11 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Navbar = () => {
   return (
     <div className="navbar bg-purple-700">
       <div className="flex-1">
-        <a className="md:ml-20  text-White font-bold text-xl">DENNIME</a>
+        <Link href='/' className="md:ml-20  text-White font-bold text-xl">DENNIME</Link>
       </div>
 
       <div className="dropdown dropdown-end md:mr-20">

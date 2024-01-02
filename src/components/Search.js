@@ -1,16 +1,30 @@
+"use client";
 import { IoSearchSharp } from "react-icons/io5";
-
+import { useRef } from "react";
+import { useRouter } from "next/navigation";
 const Search = () => {
-  return (
-    <div className="mt-10 flex justify-center ">
-         <input
-            type="text"
-            placeholder="Search Anime"
-            className="relative rounded-r-lg  rounded-tl-lg p-4 px-10 md:w-auto text-White text-md bg-Grey"
-          />
-        <IoSearchSharp className="absolute mr-60 mt-5 fill-Purple"/>
-    </div>
-  )
-}
+  const searchRef = useRef();
+  const router = useRouter();
+  const handleSearch = (e) => {
+    e.preventDefault();
+    // alert(searchRef.current.value)
 
-export default Search
+    const keyword = searchRef.current.value;
+    router.push(`/search/${keyword}`);
+  };
+  return (
+    <div className="relative mt-10 flex justify-center ">
+      <input
+        type="text"
+        placeholder="Search Anime"
+        className=" rounded-r-lg  rounded-tl-lg p-4 px-10 md:w-auto text-White text-md bg-Grey"
+        ref={searchRef}
+      />
+      <button className="absolute top-4 ml-60" onClick={handleSearch}>
+        <IoSearchSharp className="fill-Purple" size={20} />
+      </button>
+    </div>
+  );
+};
+
+export default Search;
