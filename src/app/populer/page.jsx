@@ -1,21 +1,23 @@
+import Link from "next/link";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
-import Link from "next/link";
+import HeaderMenu from "../../components/HeaderMenu";
 
-const Animelist = ({ api }) => {
-  return (
-    <>
-      {/* popular */}
-      <div className="lg:container mx-8">
-        <div className="container carousel gap-5 p-2">
-          {api.data.map((anime) => {
+const Page = async () => {
+  try {
+    const resTopAnime = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/top/anime`
+    );
+    const topAnime = await resTopAnime.json();
+
+    return (
+      <>
+      <HeaderMenu title="Populer" linkHref={"/"} linkTitle={"Kembali"}/>
+        <div className="lg:container grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-5 mx-8">
+          {topAnime.data.map((anime) => {
             return (
-              <Link
-                href={`/${anime.mal_id}`}
-                key={anime.mal_id}
-                className="carousel-item cursor-pointer"
-              >
-                <div className="relative h-48 md:h-64 lg:h-64 sm:h-60 overflow-hidden  ">
+              <Link href={`/${anime.mal_id}`} className="cursor-pointer">
+                <div className="relative h-60 md:h-64 lg:h-64 sm:h-60 overflow-hidden  hover:scale-110 transition-transform duration-300 ">
                   {/* Gambar */}
                   <Image
                     src={anime.images.webp.large_image_url}
@@ -46,24 +48,12 @@ const Animelist = ({ api }) => {
             );
           })}
         </div>
-      </div>
-
-      {/* genres */}
-      {/* <div className="lg:container mx-9">
-        <div className="container carousel carousel-s rounded-box gap-4">
-         
-              <Link
-              href={``}
-              key={anime.mal_id}
-              className="carousel-item rounded-r-lg rounded-tl-lg bg-Grey p-2"
-            >
-              <p className="text-Purple text-md font-medium">{anime.name}</p>
-            </Link>
-           
-        </div>
-      </div> */}
-    </>
-  );
+      </>
+    );
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return <div>Error fetching data</div>;
+  }
 };
 
-export default Animelist;
+export default Page;

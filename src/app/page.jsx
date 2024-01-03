@@ -31,7 +31,7 @@ const Home = async () => {
         </section>
 
         <section>
-          <HeaderSection title="Season Now" linkTitle="" linkHref="" />
+          <HeaderSection title="Musim Sekarang" linkTitle="" linkHref="" />
           <SeasonNow/>
         </section>
 
@@ -41,7 +41,7 @@ const Home = async () => {
         </section>
 
         <section>
-          <HeaderSection title="Populer" linkTitle="more" linkHref="/popular" />
+          <HeaderSection title="Populer" linkTitle="more" linkHref="/populer" />
           <Animelist api={topAnime} />
         </section>
       </>

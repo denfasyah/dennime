@@ -5,8 +5,9 @@ import HeaderSection from "../../../components/HeaderSection";
 const Page = async ({ params }) => {
   try {
     const { keyword } = params;
+    const decodeKeyword = decodeURI(keyword);
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/anime?q=${keyword}`
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/anime?q=${decodeKeyword}`
     );
     const search = await response.json();
     console.log(response);
@@ -17,7 +18,7 @@ const Page = async ({ params }) => {
 
         <section>
           <HeaderSection
-            title={`Pencarian untuk ${keyword}...`}
+            title={`Pencarian untuk ${decodeKeyword}...`}
             linkTitle="more"
             linkHref="/popular"
           />

@@ -18,7 +18,7 @@ const SeasonNow = async () => {
               key={anime.mal_id}
               className="carousel-item cursor-pointer"
             >
-              <div className="relative h-48 md:h-64 lg:h-64 sm:h-64 overflow-hidden  hover:scale-110 hover:rounded-md transition-transform duration-300 ">
+              <div className="relative h-48 md:h-64 lg:h-64 sm:h-64 overflow-hidden">
                 {/* Gambar */}
                 <Image
                   src={anime.images.webp.large_image_url}

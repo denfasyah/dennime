@@ -10,14 +10,14 @@ const RecentEps = async () => {
 
     return (
       <div className="lg:container mx-8">
-        <div className="container carousel carousel-s gap-5 p-2">
+        <div className="container carousel gap-5 p-2">
           {recentEps.data.map((anime) => (
             <Link
               href={`/anime/${anime.entry.mal_id}`}
               key={anime.entry.mal_id}
               className="carousel-item cursor-pointer"
             >
-              <div className="relative h-48 md:h-64 lg:h-64 sm:h-64 overflow-hidden  hover:scale-110 hover:rounded-md transition-transform duration-300 ">
+              <div className="relative h-48 md:h-64 lg:h-64 sm:h-64 overflow-hidden">
                 {/* Gambar */}
                 <Image
                   src={anime.entry.images.webp.large_image_url}

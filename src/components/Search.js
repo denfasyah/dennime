@@ -6,11 +6,12 @@ const Search = () => {
   const searchRef = useRef();
   const router = useRouter();
   const handleSearch = (e) => {
+    const keyword = searchRef.current.value;
+    if(!keyword) return;
     if (e.key === "Enter" || e.type === "click") {
       e.preventDefault();
       // alert(searchRef.current.value)
 
-      const keyword = searchRef.current.value;
       router.push(`/search/${keyword}`);
     }
   };
