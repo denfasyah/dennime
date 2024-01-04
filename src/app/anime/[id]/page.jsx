@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
+import VideoPlayer from "../../../components/VideoPlayer"
 
 const DetailAnime = async ({ params: { id } }) => {
   try {
@@ -7,6 +8,12 @@ const DetailAnime = async ({ params: { id } }) => {
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/anime/${id}`
     );
     const detailAnime = await DetailAnime.json();
+
+    const Characters = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/anime/${id}/characters`
+    );
+    const characters = await Characters.json();
+    console.log(characters);
     // console.log(detailAnime)
 
     return (
@@ -51,7 +58,7 @@ const DetailAnime = async ({ params: { id } }) => {
               key={genre.mal_id}
               className="text-md border-2 border-purple-700 rounded-r-2xl rounded-bl-2xl px-2 text-White py-1 rounded-md mr-2"
             >
-              {genre.name}
+              {genre.name} 
             </span>
           ))}
         </div>
@@ -67,59 +74,59 @@ const DetailAnime = async ({ params: { id } }) => {
             <div className="grid md:grid-cols-5 sm:grid-cols-3 grid-cols-2 gap-5">
               <div>
                 <p className="font-semibold">Type:</p>
-                <p className="mt-1 border-2 border-purple-700 rounded-r-2xl rounded-bl-2xl w-10 p-1.5">
+                <p className="mt-1 border-2 border-purple-700 rounded-r-2xl rounded-bl-2xl inline-block min-w-[min-width] p-1.5">
                   {detailAnime.data.type}
                 </p>
               </div>
 
               <div>
                 <p className="font-semibold">Episodes:</p>
-                <p className="mt-1 border-2 border-purple-700 rounded-r-2xl rounded-bl-2xl w-10 p-1.5">
-                  {detailAnime.data.episodes}
+                <p className="mt-1 border-2 border-purple-700 rounded-r-2xl rounded-bl-2xl inline-block min-w-[min-width] p-1.5">
+                 {detailAnime.data.episodes === null ? "?" : detailAnime.data.episodes}
                 </p>
               </div>
 
               <div>
                 <p className="font-semibold">Status:</p>
-                <p className="mt-1 border-2 border-purple-700 rounded-r-2xl rounded-bl-2xl w-20 p-1.5">
+                <p className="mt-1 border-2 border-purple-700 rounded-r-2xl rounded-bl-2xl inline-block min-w-[min-width] p-1.5">
                   {detailAnime.data.status}
                 </p>
               </div>
 
               <div>
                 <p className="font-semibold">Aired:</p>
-                <p className="mt-1 border-2 border-purple-700 rounded-r-2xl rounded-bl-2xl w-32 p-1.5">
+                <p className="mt-1 border-2 border-purple-700 rounded-r-2xl rounded-bl-2xl inline-block min-w-[min-width] p-1.5">
                   {detailAnime.data.aired.string}
                 </p>
               </div>
 
               <div>
                 <p className="font-semibold">Premiered:</p>
-                <p className="mt-1 border-2 border-purple-700 rounded-r-2xl rounded-bl-2xl w-32 p-1.5">
+                <p className="mt-1 border-2 border-purple-700 rounded-r-2xl rounded-bl-2xl inline-block min-w-[min-width] p-1.5">
                   {detailAnime.data.season} {detailAnime.data.year}
                 </p>
               </div>
               <div>
                 <p className="font-semibold">Source:</p>
-                <p className="mt-1 border-2 border-purple-700 rounded-r-2xl rounded-bl-2xl w-20 p-1.5">
+                <p className="mt-1 border-2 border-purple-700 rounded-r-2xl rounded-bl-2xl inline-block min-w-[min-width] p-1.5">
                   {detailAnime.data.source}
                 </p>
               </div>
               <div>
-                <p className="font-semibold">Rank:</p>
-                <p className="mt-1 border-2 border-purple-700 rounded-r-2xl rounded-bl-2xl w-10 p-1.5">
-                  {detailAnime.data.rank}
+                <p className="font-semibold">Studios:</p>
+                <p className="mt-1 border-2 border-purple-700 rounded-r-2xl rounded-bl-2xl inline-block min-w-[min-width] p-1.5">
+                  {detailAnime.data.studios[0].name}
                 </p>
               </div>
               <div>
                 <p className="font-semibold">Broadcast:</p>
-                <p className="mt-1 border-2 border-purple-700 rounded-r-2xl rounded-bl-2xl w-28 p-1.5">
+                <p className="mt-1 border-2 border-purple-700 rounded-r-2xl rounded-bl-2xl inline-block min-w-[min-width] p-1.5">
                   {detailAnime.data.broadcast.day}
                 </p>
               </div>
               <div>
                 <p className="font-semibold">Producers:</p>
-                <p className="mt-1 border-2 border-purple-700 rounded-r-2xl rounded-bl-2xl w-28 p-1.5">
+                <p className="mt-1 border-2 border-purple-700 rounded-r-2xl rounded-bl-2xl inline-block min-w-[min-width] p-1.5">
                   {detailAnime.data.producers[0].name}
                   {/* <br />
                   {detailAnime.data.producers[1].name} */}
@@ -127,22 +134,10 @@ const DetailAnime = async ({ params: { id } }) => {
               </div>
               <div>
                 <p className="font-semibold">Licensors:</p>
-                <p className="mt-1 border-2 border-purple-700 rounded-r-2xl rounded-bl-2xl w-28 p-1.5">
+                <p className="mt-1 border-2 border-purple-700 rounded-r-2xl rounded-bl-2xl inline-block min-w-[min-width] p-1.5">
                   {detailAnime.data.licensors[0].name}
                 </p>
               </div>
-
-              {/* <div>
-                <p className="font-semibold">Producers:</p>
-                {detailAnime.data.producers.map((producer) => (
-                  <p
-                    key={producer.mal_id}
-                    className="mt-1 border-2 border-purple-700 rounded-r-2xl rounded-bl-2xl w-28 p-1.5"
-                  >
-                    {producer.name}
-                  </p>
-                ))}
-              </div> */}
             </div>
           </div>
         </div>
@@ -151,6 +146,45 @@ const DetailAnime = async ({ params: { id } }) => {
           <p className="text-2xl text-White font-semibold mb-5">Sinopsis</p>
           <p className="text-md line-clamp-5">{detailAnime.data.synopsis}</p>
         </div>
+
+        <div>
+          <VideoPlayer youtubeId={detailAnime.data.trailer.youtube_id}/>
+        </div>
+
+        {/* karakter */}
+
+        <div className="lg:container mt-10 mx-8">
+        <p className="text-2xl text-White font-semibold mb-5">Character</p>
+        <div className="container carousel gap-5 p-2">
+          {characters.data.map((anime) => (
+            <div
+              key={anime.character.mal_id}
+              className="carousel-item cursor-pointer"
+            >
+              <div className="relative h-48 md:h-64 lg:h-64 sm:h-64 overflow-hidden">
+                {/* Gambar */}
+                <Image
+                  src={anime.character.images.webp.image_url}
+                  width={300}
+                  height={300}
+                  alt={anime.character.name}
+                  className="rounded-md object-cover h-full w-full"
+                />
+
+                {/* Gradient Overlay */}
+                <div className="absolute flex items-center justify-center w-full h-full inset-0 bg-gradient-to-b from-20% from-transparent to-black rounded-md">
+                  <h3 className="absolute bottom-2 text-sm mx-5 mb-2 text-center text-white line-clamp-1 hover:line-clamp-none transition-all duration-300 ease-in-out">
+                    {anime.character.name}
+                  </h3>
+                </div>
+
+               
+                
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
       </>
     );
   } catch (error) {
