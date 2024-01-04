@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
-import VideoPlayer from "../../../components/VideoPlayer"
+import VideoPlayer from "../../../components/VideoPlayer";
 
 const DetailAnime = async ({ params: { id } }) => {
   try {
@@ -13,7 +13,11 @@ const DetailAnime = async ({ params: { id } }) => {
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/anime/${id}/characters`
     );
     const characters = await Characters.json();
-    console.log(characters);
+    
+    const Episodes = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/anime/${id}/episodes`
+    );
+    const episodes = await Episodes.json();
     // console.log(detailAnime)
 
     return (
@@ -58,7 +62,7 @@ const DetailAnime = async ({ params: { id } }) => {
               key={genre.mal_id}
               className="text-md border-2 border-purple-700 rounded-r-2xl rounded-bl-2xl px-2 text-White py-1 rounded-md mr-2"
             >
-              {genre.name} 
+              {genre.name}
             </span>
           ))}
         </div>
@@ -82,7 +86,9 @@ const DetailAnime = async ({ params: { id } }) => {
               <div>
                 <p className="font-semibold">Episodes:</p>
                 <p className="mt-1 border-2 border-purple-700 rounded-r-2xl rounded-bl-2xl inline-block min-w-[min-width] p-1.5">
-                 {detailAnime.data.episodes === null ? "?" : detailAnime.data.episodes}
+                  {detailAnime.data.episodes === null
+                    ? "?"
+                    : detailAnime.data.episodes}
                 </p>
               </div>
 
@@ -148,43 +154,59 @@ const DetailAnime = async ({ params: { id } }) => {
         </div>
 
         <div>
-          <VideoPlayer youtubeId={detailAnime.data.trailer.youtube_id}/>
+          <VideoPlayer youtubeId={detailAnime.data.trailer.youtube_id} />
+        </div>
+
+        {/* episode */}
+        <div className="lg:container mx-8 mt-10 ">
+          <p className="text-2xl text-White font-semibold mb-5">Episodes</p>
+          <div className="gap-2  overflow-x-auto h-80">
+            <table className="table table-pin-rows">
+              {episodes.data.map((episode) => (
+                
+              <thead key={episode.mal_id}>
+                <tr>
+                  <th>Episode {episode.mal_id}</th>
+                  <th className="text-right">{episode.aired.slice(0, 10)}</th>
+                </tr>
+               
+              </thead>
+              ))}
+            </table>
+          </div>
         </div>
 
         {/* karakter */}
 
         <div className="lg:container mt-10 mx-8">
-        <p className="text-2xl text-White font-semibold mb-5">Character</p>
-        <div className="container carousel gap-5 p-2">
-          {characters.data.map((anime) => (
-            <div
-              key={anime.character.mal_id}
-              className="carousel-item cursor-pointer"
-            >
-              <div className="relative h-48 md:h-64 lg:h-64 sm:h-64 overflow-hidden">
-                {/* Gambar */}
-                <Image
-                  src={anime.character.images.webp.image_url}
-                  width={300}
-                  height={300}
-                  alt={anime.character.name}
-                  className="rounded-md object-cover h-full w-full"
-                />
+          <p className="text-2xl text-White font-semibold mb-5">Character</p>
+          <div className="container carousel gap-5 p-2">
+            {characters.data.map((anime) => (
+              <div
+                key={anime.character.mal_id}
+                className="carousel-item cursor-pointer"
+              >
+                <div className="relative h-48 md:h-64 lg:h-64 sm:h-64 overflow-hidden">
+                  {/* Gambar */}
+                  <Image
+                    src={anime.character.images.webp.image_url}
+                    width={300}
+                    height={300}
+                    alt={anime.character.name}
+                    className="rounded-md object-cover h-full w-full"
+                  />
 
-                {/* Gradient Overlay */}
-                <div className="absolute flex items-center justify-center w-full h-full inset-0 bg-gradient-to-b from-20% from-transparent to-black rounded-md">
-                  <h3 className="absolute bottom-2 text-sm mx-5 mb-2 text-center text-white line-clamp-1 hover:line-clamp-none transition-all duration-300 ease-in-out">
-                    {anime.character.name}
-                  </h3>
+                  {/* Gradient Overlay */}
+                  <div className="absolute flex items-center justify-center w-full h-full inset-0 bg-gradient-to-b from-20% from-transparent to-black rounded-md">
+                    <h3 className="absolute bottom-2 text-sm mx-5 mb-2 text-center text-white line-clamp-1 hover:line-clamp-none transition-all duration-300 ease-in-out">
+                      {anime.character.name}
+                    </h3>
+                  </div>
                 </div>
-
-               
-                
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
       </>
     );
   } catch (error) {

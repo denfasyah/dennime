@@ -41,7 +41,7 @@ const Home = async () => {
         </section>
 
         <section>
-          <HeaderSection title="Populer" linkTitle="more" linkHref="/populer" />
+          <HeaderSection title="Populer" linkTitle="" linkHref=""/>
           <Animelist api={topAnime} />
         </section>
       </>
