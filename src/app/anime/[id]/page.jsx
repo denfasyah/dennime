@@ -149,7 +149,7 @@ const DetailAnime = async ({ params: { id } }) => {
         </div>
 
         <div className="lg:container mx-8 mt-10">
-          <p className="text-2xl text-White font-semibold mb-5">Sinopsis</p>
+          <p className="text-2xl text-White font-semibold mb-5">Synopsis</p>
           <p className="text-md line-clamp-5">{detailAnime.data.synopsis}</p>
         </div>
 
@@ -163,7 +163,7 @@ const DetailAnime = async ({ params: { id } }) => {
           <div className="gap-2  overflow-x-auto h-80">
             <table className="table table-pin-rows">
               {episodes.data.map((episode) => (
-                
+
               <thead key={episode.mal_id}>
                 <tr>
                   <th>Episode {episode.mal_id}</th>
@@ -179,7 +179,7 @@ const DetailAnime = async ({ params: { id } }) => {
         {/* karakter */}
 
         <div className="lg:container mt-10 mx-8">
-          <p className="text-2xl text-White font-semibold mb-5">Character</p>
+          <p className="text-2xl text-White font-semibold mb-5">Characters</p>
           <div className="container carousel gap-5 p-2">
             {characters.data.map((anime) => (
               <div
