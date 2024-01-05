@@ -1,31 +1,19 @@
 import Link from "next/link";
 import Image from "next/image";
 import { fetchData } from "../../../services/apiService";
-import Banner from "../../../components/anime/Banner";
-import Card from "../../../components/anime/Card";
-import AnimeTitle from "../../../components/anime/AnimeTitle";
-import AnimeDetails from "../../../components/anime/AnimeDetails";
-import Rating from "../../../components/anime/Rating";
-import Genre from "../../../components/anime/Genre";
-import VideoPlayer from "../../../components/anime/VideoPlayer";
+import Banner from "../../../components/anime_id/Banner";
+import Card from "../../../components/anime_id/Card";
+import AnimeTitle from "../../../components/anime_id/AnimeTitle";
+import AnimeDetails from "../../../components/anime_id/AnimeDetails";
+import Rating from "../../../components/anime_id/Rating";
+import Genre from "../../../components/anime_id/Genre";
+import VideoPlayer from "../../../components/anime_id/VideoPlayer";
+import NotFound from "../../not-found";
 
 const Page = async ({ params: { id } }) => {
   const { detailAnime, characters, episodes } = await fetchData(id);
   if (!detailAnime.data) {
-    return (
-      <div className='mt-20 text-center'>
-      <h2 className='text-5xl font-bold text-yellow-500'>Oops 404 </h2>
-      <p className='text-sm my-2'>Page not found</p>
-      <Link className='text-sm text-blue-500' href="/">Back</Link>
-      <Image
-              src="/img/luffy.png"
-              alt="Anime Image"
-              width={300}
-              height={200}
-              className='mx-auto'
-            />
-    </div>
-    )
+    return <NotFound />;
   }
 
   return (
