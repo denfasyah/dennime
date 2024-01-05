@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+
 const RecentEps = async () => {
   try {
     const response = await fetch(
@@ -35,8 +36,8 @@ const RecentEps = async () => {
                 </div>
 
                 {/* Episode Title */}
-                <p className="text-xs flex items-center gap-2 absolute top-0 pl-2 pb-1 pt-1.5 pr-1 left-0 bg-Background text-white">
-                  {anime.episodes[0].title}
+                <p className="text-xs flex bg-purple-700 font-bold rounded-br-md items-center gap-2 absolute top-0 pl-2 pb-1 pt-1.5 pr-1 left-0  text-white">
+                  E{ anime.episodes[0].title.replace(/[iode ]/gi, '').slice(0,2) + ''} {anime.episodes[0].title.replace(/[episode ]/gi, '')}
                 </p>
 
                 
