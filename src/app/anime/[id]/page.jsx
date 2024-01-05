@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import { fetchData } from "../../../services/apiService";
 import Banner from "../../../components/anime/Banner";
@@ -10,6 +11,22 @@ import VideoPlayer from "../../../components/anime/VideoPlayer";
 
 const Page = async ({ params: { id } }) => {
   const { detailAnime, characters, episodes } = await fetchData(id);
+  if (!detailAnime.data) {
+    return (
+      <div className='mt-20 text-center'>
+      <h2 className='text-5xl font-bold text-yellow-500'>Oops 404 </h2>
+      <p className='text-sm my-2'>Page not found</p>
+      <Link className='text-sm text-blue-500' href="/">Back</Link>
+      <Image
+              src="/img/luffy.png"
+              alt="Anime Image"
+              width={300}
+              height={200}
+              className='mx-auto'
+            />
+    </div>
+    )
+  }
 
   return (
     <>

@@ -10,8 +10,6 @@ const Search = () => {
     if(!keyword) return;
     if (e.key === "Enter" || e.type === "click") {
       e.preventDefault();
-      // alert(searchRef.current.value)
-
       router.push(`/search/${keyword}`);
     }
   };
@@ -24,7 +22,7 @@ const Search = () => {
         ref={searchRef}
         onKeyDown={handleSearch}
       />
-      <button className="absolute top-4 ml-60" onClick={handleSearch}>
+      <button className="absolute top-4 ml-52 mt-0.5" onClick={handleSearch}>
         <IoSearchSharp className="fill-Purple" size={20} />
       </button>
     </div>

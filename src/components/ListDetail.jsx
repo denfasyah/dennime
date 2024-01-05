@@ -1,22 +1,13 @@
-import Link from "next/link";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
-import HeaderMenu from "../../components/HeaderMenu";
+import Link from "next/link";
 
-const Page = async () => {
-  try {
-    const resTopAnime = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/top/anime`
-    );
-    const topAnime = await resTopAnime.json();
-
-    return (
-      <>
-      <HeaderMenu title="Populer" linkHref={"/"} linkTitle={"Kembali"}/>
-        <div className="lg:container grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-5 mx-8">
-          {topAnime.data.map((anime) => {
+const ListDetail = ({api}) => {
+  return (
+    <div className="lg:container grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-6 mx-8">
+          {api.data.map((anime) => {
             return (
-              <Link href={`/${anime.mal_id}`} className="cursor-pointer">
+              <Link href={`/anime/${anime.mal_id}`} className="cursor-pointer">
                 <div className="relative h-60 md:h-64 lg:h-64 sm:h-60 overflow-hidden  hover:scale-110 transition-transform duration-300 ">
                   {/* Gambar */}
                   <Image
@@ -48,12 +39,7 @@ const Page = async () => {
             );
           })}
         </div>
-      </>
-    );
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return <div>Error fetching data</div>;
-  }
-};
+  )
+}
 
-export default Page;
+export default ListDetail
