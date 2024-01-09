@@ -1,4 +1,3 @@
-import { fetchData } from "../../../services/apiService";
 import ListDetail from "../../../components/ListDetail";
 import Search from "../../../components/Search";
 import HeaderSection from "../../../components/HeaderSection";

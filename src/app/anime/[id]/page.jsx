@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import { fetchData } from "../../../services/apiService";
 import Banner from "../../../components/anime_id/Banner";
@@ -84,7 +83,7 @@ const Page = async ({ params: { id } }) => {
 
       <div className="lg:container mx-8 mt-10">
         <p className="text-2xl text-White font-semibold mb-5">Synopsis</p>
-        <p className="text-md line-clamp-5">{detailAnime.data.synopsis}</p>
+        <p className="text-md line-clamp-5 hover:line-clamp-none">{detailAnime.data.synopsis}</p>
       </div>
 
       <div>

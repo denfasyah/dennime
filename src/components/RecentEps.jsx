@@ -2,17 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 
-const RecentEps = async () => {
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/watch/episodes`
-    );
-    const recentEps = await response.json();
-
+const RecentEps = async ({api}) => {
     return (
       <div className="lg:container mx-8">
         <div className="container carousel gap-5 p-2">
-          {recentEps.data.slice(0,10).map((anime) => (
+          {api.data.slice(0,10).map((anime) => (
             <Link
               href={`/anime/${anime.entry.mal_id}`}
               key={anime.entry.mal_id}
@@ -47,10 +41,7 @@ const RecentEps = async () => {
         </div>
       </div>
     );
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return <div className="container text-red-500">Error fetching data</div>;
-  }
+  
 };
 
 export default RecentEps;

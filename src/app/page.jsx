@@ -5,7 +5,7 @@ import HeaderSection from "../components/HeaderSection";
 import Genre from "../components/Genre";
 import RecentEps from "../components/RecentEps";
 const Home = async () => {
-  const { topAnime, seasonNow} = await fetchData();
+  const { topAnime, seasonNow, genre, recentEps} = await fetchData();
 
   return (
     <>
@@ -13,7 +13,7 @@ const Home = async () => {
       
       <section>
         <HeaderSection title="Genre" linkTitle="" linkHref="" />
-        <Genre />
+        <Genre api={genre}/>
       </section>
 
       <section>
@@ -23,7 +23,7 @@ const Home = async () => {
 
       <section>
         <HeaderSection title="Episode Terbaru" linkTitle="Lainnya" linkHref="/recenteps" />
-        <RecentEps />
+        <RecentEps api={recentEps}/>
       </section>
 
       <section>
