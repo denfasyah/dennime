@@ -83,7 +83,9 @@ const Page = async ({ params: { id } }) => {
 
       <div className="lg:container mx-8 mt-10">
         <p className="text-2xl text-White font-semibold mb-5">Synopsis</p>
-        <p className="text-md line-clamp-5 hover:line-clamp-none">{detailAnime.data.synopsis}</p>
+        <p className="text-md line-clamp-5 hover:line-clamp-none">
+          {detailAnime.data.synopsis}
+        </p>
       </div>
 
       <div>

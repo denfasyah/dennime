@@ -2,9 +2,11 @@ import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 import Link from "next/link";
 
+
+
 const Animelist = ({ api }) => {
-  return (
-    <>
+  return ( 
+    <>  
       {/* popular */}
       <div className="lg:container mx-8">
         <div className="container carousel carousel-s gap-5 p-2">

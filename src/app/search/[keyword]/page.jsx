@@ -9,7 +9,6 @@ const Page = async ({ params }) => {
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/anime?q=${decodeKeyword}`
   );
   const search = await response.json();
-  console.log(response);
 
   return (
     <>
