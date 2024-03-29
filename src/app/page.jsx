@@ -15,11 +15,11 @@ const Home = async () => {
         <HeaderSection title="Genre" linkTitle="" linkHref="" />
         <Genre api={genre}/>
       </section>
-
+{/* 
       <section>
         <HeaderSection title="Musim Sekarang" linkTitle="Lainnya" linkHref="/season" />
         <Animelist api={seasonNow} />
-      </section>
+      </section> */}
 
       <section>
         <HeaderSection title="Episode Terbaru" linkTitle="Lainnya" linkHref="/recenteps" />
